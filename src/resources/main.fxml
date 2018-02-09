@@ -24,17 +24,80 @@
 
   </padding>
 
+  <VBox
+    GridPane.columnIndex="0"
+    GridPane.rowIndex="0"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP"
+    minWidth="180"
+    alignment="TOP_CENTER">
+
+    <HBox>
+
+
+      <Label
+        text="%densitySliderText"
+        labelFor="$densitySlider"
+        mnemonicParsing="true"/>
+
+      <Slider
+        fx:id="densitySlider"
+        min="0"
+        max="100"
+        majorTickUnit="10"
+        minorTickCount="1"
+        snapToTicks="true"
+        showTickMarks="true"
+        showTickLabels="false"
+        blockIncrement="10"
+        value="50"/>
+
+    </HBox>
+
+    <Button
+      fx:id="resetButton"
+      text="%resetButtonText"
+      onAction="#reset"/>
+
+  </VBox>
+
+  <VBox
+    GridPane.columnIndex="0"
+    GridPane.rowIndex="1"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP"
+    minWidth="180"
+    alignment="TOP_CENTER">
+
+    <HBox
+      alignment="CENTER">
+
+      <Button
+        fx:id="runOnceButton"
+        text="%runOnceButtonText"
+        onAction="#runOnce">
+      </Button>
+
+
+      <ToggleButton
+        fx:id="runForeverButton"
+        text="%runForeverButtonText"
+        onAction="#runForever"/>
+
+    </HBox>
+  </VBox>
+
   <ScrollPane
     fx:id="viewScroller"
     GridPane.rowIndex="0"
-    GridPane.columnIndex="0"
-    GridPane.columnSpan="2"
+    GridPane.columnIndex="1"
+    GridPane.rowSpan="2"
     GridPane.halignment="CENTER"
     GridPane.valignment="TOP"
-    minWidth="600"
-    minHeight="600"
-    maxWidth="600"
-    maxHeight="600"
+    minWidth="300"
+    minHeight="300"
+    maxWidth="800"
+    maxHeight="800"
     pannable="true"
     hbarPolicy="NEVER"
     vbarPolicy="NEVER">
@@ -42,52 +105,9 @@
     <View
       fx:id="terrainView"
       width="2000"
-      height="2000" />
+      height="2000"/>
 
   </ScrollPane>
-
-  <Slider
-    fx:id="densitySlider"
-    min="0"
-    max="100"
-    majorTickUnit="10"
-    minorTickCount="1"
-    snapToTicks="true"
-    showTickMarks="true"
-    showTickLabels="false"
-    blockIncrement="10"
-    value="50"
-    GridPane.rowIndex="1"
-    GridPane.columnIndex="0"
-    GridPane.halignment="CENTER"
-    GridPane.valignment="TOP" />
-
-  <Button
-    fx:id="runOnceButton"
-    GridPane.rowIndex="1"
-    GridPane.columnIndex="1"
-    GridPane.halignment="CENTER"
-    GridPane.valignment="TOP"
-    text="%runOnceButtonText"
-    onAction="#runOnce" />
-
-  <Button
-    fx:id="resetButton"
-    GridPane.rowIndex="2"
-    GridPane.columnIndex="0"
-    GridPane.halignment="CENTER"
-    GridPane.valignment="TOP"
-    text="%resetButtonText"
-    onAction="#reset" />
-
-  <ToggleButton
-    fx:id="runForeverButton"
-    GridPane.rowIndex="2"
-    GridPane.columnIndex="1"
-    GridPane.halignment="CENTER"
-    GridPane.valignment="TOP"
-    text="%runForeverButtonText"
-    onAction="#runForever" />
 
 
 </GridPane>

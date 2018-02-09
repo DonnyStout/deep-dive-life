@@ -8,7 +8,7 @@ import javafx.scene.control.ToggleButton;
 
 public class Controller {
 
-  private static final int UPDATE_INTERVAL = 10;
+  private static final int UPDATE_INTERVAL = 1;
   private Model model;
   private boolean running = false;
   private Runner runner = null;
@@ -24,22 +24,22 @@ public class Controller {
   private Button resetButton;
 
   @FXML
-  private ToggleButton runForeverButton;
+  private Button runOnceButton;
 
   @FXML
-  private Button runOnceButton;
+  private ToggleButton runForeverButton;
 
   @FXML
   private void reset() {
     model.populate(densitySlider.getValue() / 100);
-    updateView();
+    updateView(model.getTerrain());
 
   }
 
   @FXML
   private void runOnce() {
     model.advance();
-    updateView();
+    updateView(model.getTerrain());
   }
 
   @FXML
@@ -66,43 +66,37 @@ public class Controller {
     this.model = model;
   }
 
-  private void updateView() {
-    boolean[][] terrain;
-    synchronized (model) {
-      terrain = model.getTerrain();
-
-    }
+  private void updateView(boolean[][] terrain) {
     terrainView.draw(terrain);
     updatePending = false;
   }
 
+
   private class Runner extends Thread {
 
-    @Override
-    public void run() {
-      int currentGeneration;
-      while (running) {
-        synchronized (model) {
-          model.advance();
-          currentGeneration = model.getGeneration();
-        }
-        if (!updatePending && currentGeneration % UPDATE_INTERVAL == 0) {
-          updatePending = true;
-          Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-              updateView();
-            }
-          });
-        }
-      }
+    private void refresh() {
+      final boolean[][] terain = model.getTerrain();
       updatePending = true;
       Platform.runLater(new Runnable() {
         @Override
         public void run() {
-          updateView();
+          updateView(terain);
         }
       });
+    }
+
+    @Override
+    public void run() {
+      while (running) {
+        synchronized (model) {
+          model.advance();
+          if (!updatePending && model.getGeneration() % UPDATE_INTERVAL == 0) {
+            updatePending = true;
+            refresh();
+          }
+        }
+      }
+      refresh();
     }
 
   }
