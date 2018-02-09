@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import edu.cnm.deepdive.ca.View?>
+<GridPane xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="edu.cnm.deepdive.ca.Controller"
+  alignment="center"
+  hgap="10"
+  vgap="10">
+
+  <padding>
+    <Insets
+      top="10"
+      left="10"
+      bottom="10"
+      right="10"/>
+
+  </padding>
+
+  <ScrollPane
+    fx:id="viewScroller"
+    GridPane.rowIndex="0"
+    GridPane.columnIndex="0"
+    GridPane.columnSpan="2"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP"
+    minWidth="600"
+    minHeight="600"
+    maxWidth="600"
+    maxHeight="600"
+    pannable="true"
+    hbarPolicy="NEVER"
+    vbarPolicy="NEVER">
+
+    <View
+      fx:id="terrainView"
+      width="2000"
+      height="2000" />
+
+  </ScrollPane>
+
+  <Slider
+    fx:id="densitySlider"
+    min="0"
+    max="100"
+    majorTickUnit="10"
+    minorTickCount="1"
+    snapToTicks="true"
+    showTickMarks="true"
+    showTickLabels="false"
+    blockIncrement="10"
+    value="50"
+    GridPane.rowIndex="1"
+    GridPane.columnIndex="0"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP" />
+
+  <Button
+    fx:id="runOnceButton"
+    GridPane.rowIndex="1"
+    GridPane.columnIndex="1"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP"
+    text="%runOnceButtonText"
+    onAction="#runOnce" />
+
+  <Button
+    fx:id="resetButton"
+    GridPane.rowIndex="2"
+    GridPane.columnIndex="0"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP"
+    text="%resetButtonText"
+    onAction="#reset" />
+
+  <ToggleButton
+    fx:id="runForeverButton"
+    GridPane.rowIndex="2"
+    GridPane.columnIndex="1"
+    GridPane.halignment="CENTER"
+    GridPane.valignment="TOP"
+    text="%runForeverButtonText"
+    onAction="#runForever" />
+
+
+</GridPane>
