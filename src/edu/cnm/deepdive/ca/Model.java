@@ -1,5 +1,7 @@
 package edu.cnm.deepdive.ca;
 
+import javafx.fxml.FXML;
+
 public class Model {
 
   private static final int WIDTH = 400;

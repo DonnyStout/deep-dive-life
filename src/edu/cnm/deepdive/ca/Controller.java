@@ -4,7 +4,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.text.Text;
 
 public class Controller {
 
@@ -28,6 +30,16 @@ public class Controller {
 
   @FXML
   private ToggleButton runForeverButton;
+
+  @FXML
+  private TextField densityInput;
+
+  @FXML
+  private Button densityInputButton;
+
+  @FXML
+  public Text genText;
+
 
   @FXML
   private void reset() {
